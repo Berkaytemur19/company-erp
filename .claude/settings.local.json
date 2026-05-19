@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls c:/Users/1berk/.claude/projects/c--Users-1berk-Desktop-company-erp/memory/ 2>/dev/null || echo \"empty\")",
+      "Read(//c/Users/1berk/.claude/projects/c--Users-1berk-Desktop-company-erp/memory/**)",
+      "Bash(psql -U postgres -c \"SELECT 1 FROM pg_database WHERE datname='company_erp';\")",
+      "PowerShell(psql -U postgres -c \"SELECT 1 FROM pg_database WHERE datname='company_erp';\" 2>&1)",
+      "PowerShell(Get-Process -Name \"postgres\" -ErrorAction SilentlyContinue)",
+      "PowerShell(netstat -an)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\\", \"D:\\\\\", \"$env:APPDATA\", \"$env:LOCALAPPDATA\" -Filter \"psql.exe\" -Recurse -ErrorAction SilentlyContinue 2>$null | Select-Object -First 5 FullName)",
+      "PowerShell($env:PGPASSWORD = \"postgres\"; & \"C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\bin\\\\psql.exe\" -U postgres -c \"SELECT datname FROM pg_database WHERE datname='company_erp';\" 2>&1)",
+      "PowerShell(& \"C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\bin\\\\pg_ctl.exe\" status -D \"C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\data\" 2>&1)",
+      "PowerShell($env:PGPASSWORD = \"postgres\"; & \"C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\bin\\\\pg_ctl.exe\" start -D \"C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\data\" -l \"C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\data\\\\postgres.log\" 2>&1)",
+      "PowerShell($env:PGPASSWORD = \"postgres\"; & \"C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\bin\\\\psql.exe\" -U postgres -c \"CREATE DATABASE company_erp;\" 2>&1)",
+      "PowerShell(Invoke-RestMethod -Uri \"http://localhost:5000/api/health\" -Method GET 2>&1)",
+      "PowerShell(netstat -ano)",
+      "PowerShell(Invoke-RestMethod -Uri \"http://localhost:5000/api/health\" -Method GET)",
+      "PowerShell($body = '{\"email\":\"admin@company.com\",\"password\":\"admin123\"}'; $res = Invoke-RestMethod -Uri \"http://localhost:5000/api/auth/login\" -Method POST -Body $body -ContentType \"application/json\"; $token = $res.accessToken; Write-Host \"Token alındı\"; $headers = @{ Authorization = \"Bearer $token\" }; Invoke-RestMethod -Uri \"http://localhost:5000/api/employees\" -Method GET -Headers $headers | ConvertTo-Json)",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Force)",
+      "PowerShell($pid = \\(netstat -ano | findstr \":5000 \" | findstr \"LISTENING\" | ForEach-Object { \\($_ -split '\\\\s+'\\)[-1] } | Select-Object -First 1\\); if \\($pid\\) { Stop-Process -Id $pid -Force; Write-Host \"PID $pid durduruldu\" } else { Write-Host \"Port 5000 zaten boş\" })",
+      "PowerShell($processId = \\(netstat -ano | findstr \":5000 \" | findstr \"LISTENING\" | ForEach-Object { \\($_ -split '\\\\s+'\\)[-1] } | Select-Object -First 1\\); if \\($processId\\) { Stop-Process -Id $processId -Force; Write-Host \"PID $processId durduruldu\" } else { Write-Host \"Port 5000 zaten bos\" })",
+      "PowerShell(gh --version 2>&1)",
+      "PowerShell(winget --version 2>&1)",
+      "PowerShell(git config --global user.name 2>&1)",
+      "PowerShell(git config --global user.email 2>&1)"
+    ]
+  }
+}
