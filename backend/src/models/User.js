@@ -10,6 +10,7 @@ const User = sequelize.define('User', {
   phone: DataTypes.STRING,
   avatar_url: DataTypes.STRING,
   role: { type: DataTypes.STRING, defaultValue: 'employee' },
+  department_id: { type: DataTypes.UUID, allowNull: true },
   is_active: { type: DataTypes.BOOLEAN, defaultValue: true },
   last_login: DataTypes.DATE,
 }, { timestamps: true, underscored: true, tableName: 'users' });

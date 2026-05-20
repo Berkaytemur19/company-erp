@@ -5,10 +5,15 @@ const { authMiddleware } = require('../middleware/auth');
 
 router.get('/', authMiddleware, async (req, res) => {
   try {
+    const { Op } = require('sequelize');
     const messages = await Message.findAll({
-      where: { receiver_id: req.user.id },
-      order: [['created_at', 'DESC']],
-      limit: 50,
+      where: {
+        [Op.or]: [
+          { sender_id: req.user.id },
+          { receiver_id: req.user.id },
+        ],
+      },
+      order: [['created_at', 'ASC']],
     });
     res.json(messages);
   } catch (err) {

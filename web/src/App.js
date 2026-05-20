@@ -6,6 +6,8 @@ import { Dashboard } from './pages/Dashboard';
 import { Employees } from './pages/Employees';
 import { Inventory } from './pages/Inventory';
 import { Messages } from './pages/Messages';
+import { Departments } from './pages/Departments';
+import { Profile } from './pages/Profile';
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuthStore();
@@ -22,6 +24,8 @@ function App() {
         <Route path="/employees" element={<ProtectedRoute><Employees /></ProtectedRoute>} />
         <Route path="/inventory" element={<ProtectedRoute><Inventory /></ProtectedRoute>} />
         <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
+        <Route path="/departments" element={<ProtectedRoute><Departments /></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>

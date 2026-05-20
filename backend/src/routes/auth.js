@@ -60,4 +60,33 @@ router.get('/me', authMiddleware, async (req, res) => {
   }
 });
 
+router.put('/me', authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findByPk(req.user.id);
+    if (!user) return res.status(404).json({ error: 'Kullanıcı bulunamadı' });
+    const { first_name, last_name, phone } = req.body;
+    await user.update({ first_name, last_name, phone });
+    const updated = await User.findByPk(req.user.id, { attributes: { exclude: ['password_hash'] } });
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.put('/me/password', authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findByPk(req.user.id);
+    if (!user) return res.status(404).json({ error: 'Kullanıcı bulunamadı' });
+    const { current_password, new_password } = req.body;
+    if (!current_password || !new_password) return res.status(400).json({ error: 'Mevcut ve yeni şifre gerekli' });
+    const match = await bcrypt.compare(current_password, user.password_hash);
+    if (!match) return res.status(400).json({ error: 'Mevcut şifre hatalı' });
+    const password_hash = await bcrypt.hash(new_password, 10);
+    await user.update({ password_hash });
+    res.json({ message: 'Şifre güncellendi' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;

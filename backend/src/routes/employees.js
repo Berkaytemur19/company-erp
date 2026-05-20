@@ -39,8 +39,8 @@ router.put('/:id', authMiddleware, async (req, res) => {
     const employee = await User.findByPk(req.params.id);
     if (!employee) return res.status(404).json({ error: 'Çalışan bulunamadı' });
 
-    const { first_name, last_name, phone, avatar_url, role } = req.body;
-    await employee.update({ first_name, last_name, phone, avatar_url, role });
+    const { first_name, last_name, phone, avatar_url, role, department_id } = req.body;
+    await employee.update({ first_name, last_name, phone, avatar_url, role, department_id });
     const updated = await User.findByPk(req.params.id, { attributes: { exclude: ['password_hash'] } });
     res.json(updated);
   } catch (err) {

@@ -20,5 +20,5 @@ export const useAuth = () => {
     storeLogout();
   };
 
-  return { user, login, register, logout };
+  return { user, setUser, login, register, logout };
 };

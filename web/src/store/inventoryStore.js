@@ -18,6 +18,19 @@ export const useInventoryStore = create((set) => ({
     }
   },
 
+  updateItem: async (id, data) => {
+    try {
+      const res = await api.put(`/inventory/${id}`, data);
+      set((state) => ({
+        items: state.items.map((i) => i.id === id ? res.data : i),
+      }));
+      return res.data;
+    } catch (err) {
+      set({ error: err.response?.data?.error || err.message });
+      throw err;
+    }
+  },
+
   deleteItem: async (id) => {
     try {
       await api.delete(`/inventory/${id}`);
