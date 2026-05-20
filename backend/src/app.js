@@ -17,6 +17,8 @@ require('./models/User');
 require('./models/Department');
 require('./models/Inventory');
 require('./models/Message');
+require('./models/LeaveRequest');
+require('./models/Notification');
 
 sequelize.sync({ alter: true })
   .then(() => console.log('Tablolar hazır'))
@@ -27,6 +29,9 @@ app.use('/api/employees', require('./routes/employees'));
 app.use('/api/departments', require('./routes/departments'));
 app.use('/api/inventory', require('./routes/inventory'));
 app.use('/api/messages', require('./routes/messages'));
+app.use('/api/leaves', require('./routes/leaves'));
+app.use('/api/notifications', require('./routes/notifications'));
+app.use('/api/reports', require('./routes/reports'));
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server çalışıyor!', timestamp: new Date() });

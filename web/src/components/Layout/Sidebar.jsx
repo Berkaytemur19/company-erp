@@ -7,6 +7,7 @@ const menuItems = [
   { label: 'Departmanlar', path: '/departments', icon: '◫', roles: ['admin', 'manager'] },
   { label: 'Envanter', path: '/inventory', icon: '▤', roles: ['admin', 'manager', 'employee'] },
   { label: 'Mesajlar', path: '/messages', icon: '◈', roles: ['admin', 'manager', 'employee'] },
+  { label: 'İzinler', path: '/leaves', icon: '◷', roles: ['admin', 'manager', 'employee'] },
 ];
 
 export const Sidebar = () => {
